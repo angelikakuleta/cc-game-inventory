@@ -21,7 +21,12 @@ def add_to_inventory(inventory, added_items):
 
 def remove_from_inventory(inventory, removed_items):
     """Remove from the inventory dictionary a list of items from removed_items."""
-    pass
+    for x in removed_items:
+        if x in inventory:
+            if inventory[x] == 1:
+                inventory.pop(x)
+            else:
+                inventory[x] -= 1
 
 
 def print_table(inventory, order):
