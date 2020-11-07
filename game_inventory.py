@@ -1,3 +1,5 @@
+import csv
+from pathlib import Path
 
 # This is the file where you must work.
 # Write code in the functions (and create new functions) so that they work
@@ -50,10 +52,20 @@ item name | count
     print("-----------------")
 
 
-def import_inventory(inventory, filename):
+def import_inventory(inventory, filename="import_inventory.csv"):
     """Import new inventory items from a CSV file."""
 
-    pass
+    path = Path(__file__).parent
+    try:
+        with open(f"{path}\\{filename}") as csv_file:
+            csv_reader = csv.reader(csv_file)
+
+            items = []
+            for row in csv_reader:
+                items += row
+            add_to_inventory(inventory, items)
+    except FileNotFoundError:
+        print(f"File '{filename}' not found!")
 
 
 def export_inventory(inventory, filename):
