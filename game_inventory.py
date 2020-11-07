@@ -12,7 +12,11 @@ def display_inventory(inventory):
 
 def add_to_inventory(inventory, added_items):
     """Add to the inventory dictionary a list of items from added_items."""
-    pass
+    for x in added_items:
+        if x in inventory:
+            inventory[x] += 1
+        else:
+            inventory[x] = 1
 
 
 def remove_from_inventory(inventory, removed_items):
