@@ -68,7 +68,20 @@ def import_inventory(inventory, filename="import_inventory.csv"):
         print(f"File '{filename}' not found!")
 
 
-def export_inventory(inventory, filename):
+def export_inventory(inventory, filename="export_inventory.csv"):
     """Export the inventory into a CSV file."""
 
-    pass
+    try:
+        file_name = open(filename, "w", newline="")
+        csv_writer = csv.writer(file_name)
+
+        inventory_to_export = []
+        for item in inventory:
+            for i in range(inventory[item]):
+                inventory_to_export.append(item)
+        inventory_to_export.sort()
+        print(inventory_to_export)
+        csv_writer.writerow(inventory_to_export)
+        file_name.close()
+    except PermissionError:
+        print(f"You don't have permission creating file '{filename}'!")
