@@ -6,7 +6,8 @@
 
 def display_inventory(inventory):
     """Display the contents of the inventory in a simple way."""
-    pass
+    for key, value in inventory.items():
+        print(f"{key}: {value}")
 
 
 def add_to_inventory(inventory, added_items):
