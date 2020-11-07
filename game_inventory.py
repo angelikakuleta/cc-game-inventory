@@ -29,13 +29,25 @@ def remove_from_inventory(inventory, removed_items):
                 inventory[x] -= 1
 
 
-def print_table(inventory, order):
+def print_table(inventory, order=""):
     """
     Display the contents of the inventory in an ordered, well-organized table with
     each column right-aligned.
     """
 
-    pass
+    if (order == "count,asc"):
+        temp_inventory = dict(sorted(inventory.items(), key=lambda x: x[1]))
+    elif (order == "count,desc"):
+        temp_inventory = dict(sorted(inventory.items(), key=lambda x: x[1], reverse=True))
+    else:
+        temp_inventory = inventory
+
+    print("""-----------------
+item name | count
+-----------------""")
+    for key, value in temp_inventory.items():
+        print("{:>9} | {:>5}".format(key, value))
+    print("-----------------")
 
 
 def import_inventory(inventory, filename):
